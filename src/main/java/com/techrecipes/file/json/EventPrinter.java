@@ -3,8 +3,7 @@ package com.techrecipes.file.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class EventPrinter {
 
@@ -52,4 +51,25 @@ public class EventPrinter {
             e.printStackTrace();
         }
     }
+
+    public void printCompetitorNames() {
+        try {
+            Root root = objectMapper.readValue(jsonFile, Root.class);
+            List<Event> events = root.getEvents();
+            Set<String> competitorNames = new HashSet<>();
+            for (Event event : events) {
+                for (Competitor competitor : event.getCompetitors()) {
+                    competitorNames.add(competitor.getName());
+                }
+            }
+            List<String> namesList = new ArrayList<String>(competitorNames);
+            Collections.sort(namesList);
+            for (String name : namesList) {
+                System.out.println(name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
