@@ -28,10 +28,22 @@ public class EventPrinter {
                     String homeTeam = event.getCompetitors().get(0).getName();
                     String awayTeam = event.getCompetitors().get(1).getName();
                     double homeTeamWinProb = event.getProbability_home_team_winner();
+                    double drawProb = event.getProbability_draw();
+                    double awayTeamWinProb = event.getProbability_away_team_winner();
+                    double maxProb = Math.max(homeTeamWinProb, Math.max(drawProb, awayTeamWinProb));
+                    String result;
+                    if (maxProb == homeTeamWinProb) {
+                        result = "HOME_TEAM_WIN";
+                    } else if (maxProb == drawProb) {
+                        result = "DRAW";
+                    } else {
+                        result = "AWAY_TEAM_WIN";
+                    }
+
                     System.out.println("Start date: " + startDate);
                     System.out.println(homeTeam + " vs. " + awayTeam);
                     System.out.println("Venue: " + venue);
-                    System.out.println("Highest probable result: HOME_TEAM_WIN" + " (" + homeTeamWinProb + ")");
+                    System.out.println("Highest probable result: " + result + "(" + maxProb + ")");
                     System.out.println(" ");
                     count++;
                 }
