@@ -1,5 +1,7 @@
 package com.techrecipes.file.json;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +13,10 @@ public class Event {
     public String competition_id;
     public String season_name;
     public ArrayList<Competitor> competitors;
-    public Venue venue;
+
+    @JsonProperty("venue")
+    private Venue venue;
+
     public double probability_home_team_winner;
     public double probability_draw;
     public double probability_away_team_winner;
@@ -71,16 +76,12 @@ public class Event {
         return competitors;
     }
 
+    /*public ArrayList<Venue> getVenues() {
+        return venues;
+    }*/
+
     public void setCompetitors(ArrayList<Competitor> competitors) {
         this.competitors = competitors;
-    }
-
-    public Venue getVenue() {
-        return venue;
-    }
-
-    public void setVenue(Venue venue) {
-        this.venue = venue;
     }
 
     public double getProbability_home_team_winner() {
@@ -107,22 +108,14 @@ public class Event {
         this.probability_away_team_winner = probability_away_team_winner;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "sport_event_id='" + sport_event_id + '\'' +
-                ", start_date=" + start_date +
-                ", sport_name='" + sport_name + '\'' +
-                ", competition_name='" + competition_name + '\'' +
-                ", competition_id='" + competition_id + '\'' +
-                ", season_name='" + season_name + '\'' +
-                ", competitors=" + competitors +
-                ", venue=" + venue +
-                ", probability_home_team_winner=" + probability_home_team_winner +
-                ", probability_draw=" + probability_draw +
-                ", probability_away_team_winner=" + probability_away_team_winner +
-                '}';
+    public Venue getVenue() {
+        return venue;
     }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
+    }
+
 }
 
 
