@@ -1,12 +1,10 @@
 package com.techrecipes.file.json;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class EventPrinter {
 

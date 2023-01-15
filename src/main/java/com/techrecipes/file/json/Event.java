@@ -13,13 +13,11 @@ public class Event {
     public String competition_id;
     public String season_name;
     public ArrayList<Competitor> competitors;
-
-    @JsonProperty("venue")
-    private Venue venue;
-
     public double probability_home_team_winner;
     public double probability_draw;
     public double probability_away_team_winner;
+    @JsonProperty("venue")
+    private Venue venue;
 
     public Event() {
     }

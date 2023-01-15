@@ -1,7 +1,8 @@
 package com.techrecipes.file.json;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 public class Root {
 
