@@ -1,17 +1,20 @@
 package com.techrecipes.file.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.*;
 
+@Service
 public class EventPrinter {
 
-    private final ObjectMapper objectMapper;
-    private final File jsonFile;
+    public ObjectMapper objectMapper;
+    public File jsonFile;
 
-    public EventPrinter(File jsonFile) {
-        this.jsonFile = jsonFile;
+    public EventPrinter() {
+        this.jsonFile = new File("src/main/resources/BE_data.json");
         this.objectMapper = new ObjectMapper();
     }
 
@@ -81,4 +84,33 @@ public class EventPrinter {
             e.printStackTrace();
         }
     }
+
+    public List<Event> getEvents(int numberOfEvents) {
+        List<Event> selectedEvents = null;
+        try {
+            Root root = objectMapper.readValue(jsonFile, Root.class);
+            List<Event> events = root.getEvents();
+            int count = 0;
+            int eventSize = events.size();
+            if (numberOfEvents <= 0) {
+                numberOfEvents = eventSize;
+            } else if (numberOfEvents > eventSize) {
+                numberOfEvents = eventSize;
+            }
+            selectedEvents = new ArrayList<>();
+            for (Event event : events) {
+                if (count < numberOfEvents) {
+                    selectedEvents.add(event);
+                    count++;
+                } else {
+                    break;
+                }
+            }
+            return selectedEvents;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return selectedEvents;
+    }
+
 }
