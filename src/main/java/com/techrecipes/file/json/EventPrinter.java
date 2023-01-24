@@ -1,7 +1,6 @@
 package com.techrecipes.file.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -36,23 +35,13 @@ public class EventPrinter {
                         Date startDate = event.getStart_date();
                         String homeTeam = event.getCompetitors().get(0).getName();
                         String awayTeam = event.getCompetitors().get(1).getName();
-                        double homeTeamWinProb = event.getProbability_home_team_winner();
-                        double drawProb = event.getProbability_draw();
-                        double awayTeamWinProb = event.getProbability_away_team_winner();
-                        double maxProb = Math.max(homeTeamWinProb, Math.max(drawProb, awayTeamWinProb));
-                        String result;
-                        if (maxProb == homeTeamWinProb) {
-                            result = "HOME_TEAM_WIN";
-                        } else if (maxProb == drawProb) {
-                            result = "DRAW";
-                        } else {
-                            result = "AWAY_TEAM_WIN";
-                        }
+                        String HighestProbableResult = event.HighestProbableResult();
+                        double maxProb = event.HighestProbability();
 
                         System.out.println("Start date: " + startDate);
-                        System.out.println(homeTeam + " vs. " + awayTeam);
+                        System.out.println(homeTeam +" ("+ event.getCompetitors().get(0).getCountry()+")"+ " vs. " + awayTeam+" ("+event.getCompetitors().get(1).getCountry()+")");
                         System.out.println("Venue: " + venue);
-                        System.out.println("Highest probable result: " + result + "(" + maxProb + ")");
+                        System.out.println("Highest probable result: " + HighestProbableResult + "(" + maxProb + ")");
                         System.out.println(" ");
                         count++;
                     }
@@ -65,7 +54,8 @@ public class EventPrinter {
         }
     }
 
-    public void printCompetitorNames() {
+    public List<String> printCompetitorNames() {
+        List<String> namesList = null;
         try {
             Root root = objectMapper.readValue(jsonFile, Root.class);
             List<Event> events = root.getEvents();
@@ -75,7 +65,7 @@ public class EventPrinter {
                     competitorNames.add(competitor.getName());
                 }
             }
-            List<String> namesList = new ArrayList<String>(competitorNames);
+            namesList = new ArrayList<String>(competitorNames);
             Collections.sort(namesList);
             for (String name : namesList) {
                 System.out.println(name);
@@ -83,6 +73,7 @@ public class EventPrinter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return namesList;
     }
 
     public List<Event> getEvents(int numberOfEvents) {

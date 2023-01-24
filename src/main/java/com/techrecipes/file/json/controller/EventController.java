@@ -3,28 +3,23 @@ package com.techrecipes.file.json.controller;
 import com.techrecipes.file.json.Event;
 import com.techrecipes.file.json.EventPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class EventController {
 
     @Autowired
     private EventPrinter eventPrinter;
 
     @GetMapping("/events")
-    public List<Event> printEvents(@RequestParam(defaultValue = "30") int numberOfEvents) {
+    public String getEvents(Model model, @RequestParam(defaultValue = "10000") int numberOfEvents) {
         List<Event> events = eventPrinter.getEvents(numberOfEvents);
-        return events;
+        model.addAttribute("events", events);
+        return "events";
     }
-
-    @GetMapping("/events/{numberOfEvents}")
-    public ResponseEntity<List<Event>> getEvents(@PathVariable int numberOfEvents) {
-        List<Event> events = eventPrinter.getEvents(numberOfEvents);
-        return new ResponseEntity<>(events, HttpStatus.OK);
-    }
-
 }

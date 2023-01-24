@@ -3,7 +3,9 @@ package com.techrecipes.file.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Event {
     public String sport_event_id;
@@ -16,6 +18,9 @@ public class Event {
     public double probability_home_team_winner;
     public double probability_draw;
     public double probability_away_team_winner;
+
+    public String highestProbableResult;
+
     @JsonProperty("venue")
     private Venue venue;
 
@@ -74,10 +79,6 @@ public class Event {
         return competitors;
     }
 
-    /*public ArrayList<Venue> getVenues() {
-        return venues;
-    }*/
-
     public void setCompetitors(ArrayList<Competitor> competitors) {
         this.competitors = competitors;
     }
@@ -112,6 +113,34 @@ public class Event {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    public String HighestProbableResult() {
+        double homeTeamWinProb = this.getProbability_home_team_winner();
+        double drawProb = this.getProbability_draw();
+        double awayTeamWinProb = this.getProbability_away_team_winner();
+        double maxProb = Math.max(homeTeamWinProb, Math.max(drawProb, awayTeamWinProb));
+
+        String highestResult;
+
+        if (maxProb == homeTeamWinProb) {
+            highestResult = "HOME_TEAM_WIN";
+        } else if (maxProb == drawProb) {
+            highestResult = "DRAW";
+        } else {
+            highestResult = "AWAY_TEAM_WIN";
+        }
+
+        return highestResult;
+    }
+
+    public double HighestProbability() {
+        double homeTeamWinProb = this.getProbability_home_team_winner();
+        double drawProb = this.getProbability_draw();
+        double awayTeamWinProb = this.getProbability_away_team_winner();
+        double maxProb = Math.max(homeTeamWinProb, Math.max(drawProb, awayTeamWinProb));
+
+        return maxProb;
     }
 
 }
