@@ -54,18 +54,20 @@ public class EventPrinter {
         }
     }
 
-    public List<String> printCompetitorNames() {
+    public List<String> printCompetitorNames(String competitionId) {
         List<String> namesList = null;
         try {
             Root root = objectMapper.readValue(jsonFile, Root.class);
             List<Event> events = root.getEvents();
-            Set<String> competitorNames = new HashSet<>();
+            Set<String> teamNames = new HashSet<>();
             for (Event event : events) {
-                for (Competitor competitor : event.getCompetitors()) {
-                    competitorNames.add(competitor.getName());
+                if (event.getCompetition_id().equals(competitionId)) {
+                    for (Competitor competitor : event.getCompetitors()) {
+                        teamNames.add(competitor.getName());
+                    }
                 }
             }
-            namesList = new ArrayList<String>(competitorNames);
+            namesList = new ArrayList<String>(teamNames);
             Collections.sort(namesList);
             for (String name : namesList) {
                 System.out.println(name);
@@ -75,6 +77,8 @@ public class EventPrinter {
         }
         return namesList;
     }
+
+
 
     public List<Event> getEvents(int numberOfEvents) {
         List<Event> selectedEvents = null;
