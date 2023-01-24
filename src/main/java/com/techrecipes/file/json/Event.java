@@ -3,9 +3,7 @@ package com.techrecipes.file.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 public class Event {
     public String sport_event_id;

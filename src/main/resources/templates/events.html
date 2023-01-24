@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Matches</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div th:each="event : ${events}">
-    <p th:text="'Start date: ' + ${event.start_date}+','"></p>
-    <p th:text="${event.competitors[0].name} + ' (' + ${event.competitors[0].country} + ')' + ' vs. ' + ${event.competitors[1].name} + ' (' + ${event.competitors[1].country} + '),'"></p>
-    <p th:text="'Venue: ' + ${event.venue}+','"></p>
-    <p th:text="'Highest probable result: ' + ${event.HighestProbableResult} + '(' + ${event.HighestProbability} + ')'"></p>
-    <br>
+<div class="container">
+    <div class="row" th:each="event : ${events}">
+        <div class="col-md-12">
+            <p th:text="'Start date: ' + ${event.start_date}+','"></p>
+            <p th:text="${event.competitors[0].name} + ' (' + ${event.competitors[0].country} + ')' + ' vs. ' + ${event.competitors[1].name} + ' (' + ${event.competitors[1].country} + '),'"></p>
+            <p th:text="'Venue: ' + ${event.venue}+','"></p>
+            <p th:text="'Highest probable result: ' + ${event.HighestProbableResult} + '(' + ${event.HighestProbability} + ')'"></p>
+            <br>
+        </div>
+    </div>
 </div>
 </body>
 </html>

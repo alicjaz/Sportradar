@@ -39,7 +39,7 @@ public class EventPrinter {
                         double maxProb = event.HighestProbability();
 
                         System.out.println("Start date: " + startDate);
-                        System.out.println(homeTeam +" ("+ event.getCompetitors().get(0).getCountry()+")"+ " vs. " + awayTeam+" ("+event.getCompetitors().get(1).getCountry()+")");
+                        System.out.println(homeTeam + " (" + event.getCompetitors().get(0).getCountry() + ")" + " vs. " + awayTeam + " (" + event.getCompetitors().get(1).getCountry() + ")");
                         System.out.println("Venue: " + venue);
                         System.out.println("Highest probable result: " + HighestProbableResult + "(" + maxProb + ")");
                         System.out.println(" ");
@@ -69,15 +69,11 @@ public class EventPrinter {
             }
             namesList = new ArrayList<String>(teamNames);
             Collections.sort(namesList);
-            for (String name : namesList) {
-                System.out.println(name);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return namesList;
     }
-
 
 
     public List<Event> getEvents(int numberOfEvents) {

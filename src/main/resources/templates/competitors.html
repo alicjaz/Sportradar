@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Competitors</title>
+    <meta charset="UTF-8">
+    <title>Competitors</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div th:each="team : ${teams}">
-  <p th:text="${team}"></p>
+<div class="container">
+    <h1 class="text-center">Competitor List</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div th:each="team : ${teams}">
+                <p class="list-group-item">
+                    <span th:text="${team}"></span>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

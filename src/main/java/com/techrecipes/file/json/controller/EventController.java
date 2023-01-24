@@ -17,7 +17,7 @@ public class EventController {
     private EventPrinter eventPrinter;
 
     @GetMapping("/events")
-    public String getEvents(Model model, @RequestParam(defaultValue = "10000") int numberOfEvents) {
+    public String getEvents(Model model, @RequestParam(defaultValue = "-1") int numberOfEvents) {
         List<Event> events = eventPrinter.getEvents(numberOfEvents);
         model.addAttribute("events", events);
         return "events";

@@ -10,8 +10,8 @@ public class Main {
         SpringApplication.run(Main.class, args);
         try {
             EventPrinter eventPrinter = new EventPrinter();
-            eventPrinter.printEvents(5);
-            eventPrinter.printCompetitorNames("sr:competition:7");
+            eventPrinter.printEvents(10);
+            //eventPrinter.printCompetitorNames("sr:competition:7");
         } catch (Exception e) {
             e.printStackTrace();
         }
