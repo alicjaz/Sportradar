@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Competitors</title>
+    <!-- Import Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center">Competitor List</h1>
+    <!-- Heading for the page -->
+    <h1 class="text-center my-5">Competitors List</h1>
     <div class="row">
         <div class="col-md-12">
+            <!-- Iterate through the list of teams and display them in a list group -->
             <div th:each="team : ${teams}">
                 <p class="list-group-item">
                     <span th:text="${team}"></span>
