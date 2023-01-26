@@ -34,10 +34,15 @@ mvn spring-boot:run
 ```
 http://127.0.0.1:8000/
 ```
+### Endpoints
+`/events?numberOfEvents` - Prints the first `numberofEvents` events in the JSON file. If the number of events specified is greated than the total number of events in the JSON file, all events will be printed.  
+`/teams/{compatitionName}` - Prints all team names for given `competitionName` alphabetically.
+
 
 ### Built With
 [Spring Boot](https://spring.io/projects/spring-boot) - The web framework used  
 [Jackson](https://github.com/FasterXML/jackson) - JSON parsing library
+[Maven](https://maven.apache.org/)
 
 ### Author
 Alicja Zalewska - [github](https://github.com/alicjaz)
