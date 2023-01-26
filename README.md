@@ -42,7 +42,7 @@ http://127.0.0.1:8000/
 ### Built With
 [Spring Boot](https://spring.io/projects/spring-boot) - The web framework used  
 [Jackson](https://github.com/FasterXML/jackson) - JSON parsing library  
-[Maven](https://maven.apache.org/)
+[Maven](https://maven.apache.org/) - software project management and comprehension tool
 
 ### Author
 Alicja Zalewska - [github](https://github.com/alicjaz)
